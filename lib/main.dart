@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tracker_app/screens/signin_screen.dart';
 
 void main(){
   runApp(TrackerApp());
@@ -13,9 +14,7 @@ class TrackerApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo
       ),
-      home: Container(
-
-      ),
+      home: SignInPage(),
     );
   }
 }
