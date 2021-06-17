@@ -1,25 +1,32 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tracker_app/services/auth.dart';
-import 'package:tracker_app/widgets/custom_button.dart';
 import 'package:tracker_app/widgets/icon_signin_button.dart';
 import 'package:tracker_app/widgets/signin_button.dart';
 
 class SignInScreen extends StatelessWidget {
 
-  final void Function(User) onSignIn;
+
   final AuthBase auth;
 
-  const SignInScreen({Key key, @required this.auth, @required this.onSignIn}) : super(key: key);
+  const SignInScreen({Key key, @required this.auth,}) : super(key: key);
 
   Future _signInAnonymously() async{
    try{
      final user = await auth.signInAnonymously();
      print(user.uid);
-     onSignIn(user);
    }catch(e){
      print(e.toString());
+    }
+  }
+
+
+  Future _signInWithGoogle() async{
+    try{
+      final user = await auth.sigInWithGoogle();
+      print(user.uid);
+    }catch(e){
+      print(e.toString());
     }
   }
 
@@ -48,7 +55,7 @@ class SignInScreen extends StatelessWidget {
               text: 'Sign in with Google',
               color: Colors.white,
               textColor: Colors.black,
-              onPressed: () {},
+              onPressed: _signInWithGoogle,
               asset: 'images/google-logo.png',
             ),
             SizedBox(
